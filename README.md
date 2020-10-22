@@ -4,6 +4,10 @@ SparseDistance
 
 [![DOI](https://zenodo.org/badge/306009785.svg)](https://zenodo.org/badge/latestdoi/306009785)
 
+```bash
+python3 -m pip install git+https://github.com/jpata/SparseDistance.git
+(or just copy the files from the repo to your project)
+```
 
 Efficiently generate sparse graph adjacency matrices using tensorflow, including gradient propagation and minibatches, for graph sizes up to 100k+ in subquadratic time.
 
