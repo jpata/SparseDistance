@@ -28,9 +28,9 @@ Here's how it works:
  - *Output*: a sparse adjacency matrix for each input set `shape=(N_batch, N_elem, N_elem)`, the elements of which can be differentiated with respect to the input
  - *Hyperparameters*: bin size M, number of neighbors K, LSH codebook size (maximum number of bins) L
 
-The input data is divided into equal-sized bins based on a locality sensitive hashing (LSH), which is based on random rotations. In each bin, we run a dense k-nearest-neighbors algo and update the final sparse adjacency matrix. The generated graph consists of `N_elem/bin_size` disjoint graphs.
+The input data is divided into equal-sized bins with a locality sensitive hashing (LSH) which is based on random rotations. In each bin, we run a dense k-nearest-neighbors algo and update the final sparse adjacency matrix. The generated graph consists of `N_elem/bin_size` disjoint graphs.
 The maximum input size is determined by the pre-generated LSH codebook size. Since the bin size is much smaller than the input size, the k-nearest-neighbors evaluation is efficient.
-The input features to the LSH hashing can be learnable, so that the binning & graph construction can adapt to the problem based on gradient descent.
+The input features to the hashing and knn can be learnable, so that the binning & knn graph construction can adapt to the problem based on gradient descent.
 
 ```python
 import tensorflow as tf
