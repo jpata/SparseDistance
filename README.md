@@ -20,7 +20,7 @@ Here, we show the learned distance matrix on the left and the scaling of the tra
 </p>
 
 The algorithm is characterized as follows:
- - *Input*: a set of elements with features, `shape=(N_batch, N_elem, N_feat)`, possibly in minibatches for efficient training (e.g. each graph is a different minibatch)
+ - *Input*: a set of elements with features, `shape=(N_batch, N_elem, N_feat)`, possibly in minibatches for efficient training (e.g. a minibatch may consist of several sets/graphs padded to the same size)
  - *Output*: a sparse adjacency matrix `shape=(N_batch, N_elem, N_elem)`, the elements of which can be differentiated with respect to the input
  - *Parameters*: bin size M, number of neighbors K, LSH codebook size (maximum number of bins) L
 
@@ -29,6 +29,8 @@ The maximum input size is determined by the pre-generated LSH codebook size, whi
 The input features to the LSH hashing are learnable, so the binning can adapt to the problem based on gradient descent.
 
 ```python
+import tensorflow as tf
+import numpy as np
 from sparsedistance.models import SparseHashedNNDistance
 from sparsedistance.utils import sparse_dense_matmult_batch
 
@@ -56,15 +58,16 @@ grad = g.gradient(ret, dense_transform.weights)
 ```
 
 Features:
- - [x] Work on a modest GPU (e.g. 2060S) or a CPU
+ - [x] Works on a modest GPU (e.g. 2060S) or a CPU
  - [x] Uses only native TF 2.x operations, no compilation needed
  - [x] Fast evaluation and efficient memory use
+ - [x] TF graph mode for easy deployment
+ - [x] TF eager mode for debugging
 
 Based on the Reformer [1] and GravNet [2] papers.
 
  - [1] https://arxiv.org/abs/2001.04451
  - [2] https://arxiv.org/abs/1902.07987
-
 
 If you use this code academically, please cite this repository as follows:
 
