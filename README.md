@@ -1,6 +1,10 @@
 SparseDistance
 ==============
 
+
+[![DOI](https://zenodo.org/badge/306009785.svg)](https://zenodo.org/badge/latestdoi/306009785)
+
+
 Efficiently generate sparse graph adjacency matrices using tensorflow, including gradient propagation and minibatches.
 
 On the following images, you see the input set on the left and the learned graph structure (edges) on the right for a toy clustering problem with approx. 5000 input elements per graph.
@@ -64,4 +68,4 @@ Based on the Reformer [1] and GravNet [2] papers.
 
 If you use this code academically, please cite this repository as follows:
 
- - J.Pata, 2020, https://github.com/jpata/SparseDistance
+ - Joosep Pata. (2020, October 22). jpata/SparseDistance v0.1 (Version v0.1). Zenodo. http://doi.org/10.5281/zenodo.4117570
