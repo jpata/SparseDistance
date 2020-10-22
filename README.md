@@ -7,12 +7,6 @@ Efficiently generate sparse graph adjacency matrices using tensorflow, including
  - Output: a sparse adjacency matrix with shape `(N_batch, N_elem, N_elem)`, the elements of which can be differentiated with respect to the input
  - Parameters: bin size M, number of neighbors K
 
-- [x] Work on a modest GPU (e.g. 2060S) or a CPU
-- [x] Uses only native TF 2.x operations
-- [x] Better than quadratic scaling
-- [x] Fast evaluation and efficient memory use, up to 100k+ elements
-
-
 ```python
 from sparsedistance.models import SparseHashedNNDistance
 from sparsedistance.utils import sparse_dense_matmult_batch, pairwise_dist
@@ -52,8 +46,13 @@ Here, we show the learned distance matrix on a toy clustering problem on the lef
   <img src="images/timing.png" alt="Scaling of the complexity with input size" width="300"/>
 </p>
 
+Features:
+ - [x] Work on a modest GPU (e.g. 2060S) or a CPU
+ - [x] Uses only native TF 2.x operations
+ - [x] Better than quadratic scaling
+ - [x] Fast evaluation and efficient memory use, up to 100k+ elements
 
 Based on the Reformer [1] and GravNet [2] papers.
 
-[1] https://arxiv.org/abs/2001.04451
-[2] https://arxiv.org/abs/1902.07987
+ - [1] https://arxiv.org/abs/2001.04451
+ - [2] https://arxiv.org/abs/1902.07987
