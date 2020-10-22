@@ -5,7 +5,7 @@ SparseDistance
 [![DOI](https://zenodo.org/badge/306009785.svg)](https://zenodo.org/badge/latestdoi/306009785)
 
 ```bash
-python3 -m pip install git+https://github.com/jpata/SparseDistance.git
+python3 -m pip install git+https://github.com/jpata/SparseDistance.git@v0.1
 (or just copy the files from the repo to your project)
 ```
 
