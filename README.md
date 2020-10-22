@@ -5,7 +5,11 @@ Efficiently generate sparse graph adjacency matrices using tensorflow, including
 
  - Input: a set of elements with features, `shape=(N_batch, N_elem, N_feat)` (batching is supported for multiple graphs)
  - Output: a sparse adjacency matrix `shape=(N_batch, N_elem, N_elem)`, the elements of which can be differentiated with respect to the input
- - Parameters: bin size M, number of neighbors K
+ - Parameters: bin size M, number of neighbors K, LSH codebook size (maximum number of bins) L
+
+The input data is divided into equal-sized bins based on a locality sensitive hashing (LSH). In each bin of size, we run a dense k-nearest-neighbors and update the final sparse adjacency matrix. 
+The maximum input size is determined by the pre-generated LSH codebook size, which is based on random rotations. Since the bin size is much smaller than the input size, the k-nearest-neighbors evaluation is efficient.
+The input features to the LSH hashing are learnable, so the binning can adapt to the problem based on gradient descent.
 
 ```python
 from sparsedistance.models import SparseHashedNNDistance
@@ -20,7 +24,7 @@ y = np.array(np.random.randn(num_batches, num_points_per_batch, ), dtype=np.floa
 
 #show that we can take a gradient of stuff with respect to the distance matrix values (but not indices!)
 dense_transform = tf.keras.layers.Dense(128)
-dm_layer = SparseHashedNNDistance()
+dm_layer = SparseHashedNNDistance(max_num_bins=200, bin_size=500, num_neighbors=5)
 
 with tf.GradientTape(persistent=True) as g:
     X_transformed = dense_transform(X)
