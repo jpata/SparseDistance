@@ -3,11 +3,11 @@ SparseDistance
 
 Efficiently generate sparse graph adjacency matrices using tensorflow, including gradient propagation and minibatches.
 
- - Input: a set of elements with features, `shape=(N_batch, N_elem, N_feat)` (batching is supported for multiple graphs)
- - Output: a sparse adjacency matrix `shape=(N_batch, N_elem, N_elem)`, the elements of which can be differentiated with respect to the input
- - Parameters: bin size M, number of neighbors K, LSH codebook size (maximum number of bins) L
+ - *Input*: a set of elements with features, `shape=(N_batch, N_elem, N_feat)`, possibly in minibatches for efficient training (e.g. each graph is a different minibatch)
+ - *Output*: a sparse adjacency matrix `shape=(N_batch, N_elem, N_elem)`, the elements of which can be differentiated with respect to the input
+ - *Parameters*: bin size M, number of neighbors K, LSH codebook size (maximum number of bins) L
 
-The input data is divided into equal-sized bins based on a locality sensitive hashing (LSH). In each bin of size, we run a dense k-nearest-neighbors and update the final sparse adjacency matrix. 
+The input data is divided into equal-sized bins based on a locality sensitive hashing (LSH). In each bin, we run a dense k-nearest-neighbors and update the final sparse adjacency matrix. 
 The maximum input size is determined by the pre-generated LSH codebook size, which is based on random rotations. Since the bin size is much smaller than the input size, the k-nearest-neighbors evaluation is efficient.
 The input features to the LSH hashing are learnable, so the binning can adapt to the problem based on gradient descent.
 
