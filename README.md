@@ -56,7 +56,7 @@ grad = g.gradient(ret, dense_transform.weights)
 ```
 
 Features:
- - [x] Work on a modest GPU (e.g. 2060S) or a CPU
+ - [x] Works on a modest GPU (e.g. 2060S) or a CPU
  - [x] Uses only native TF 2.x operations, no compilation needed
  - [x] Fast evaluation and efficient memory use
 
@@ -64,7 +64,6 @@ Based on the Reformer [1] and GravNet [2] papers.
 
  - [1] https://arxiv.org/abs/2001.04451
  - [2] https://arxiv.org/abs/1902.07987
-
 
 If you use this code academically, please cite this repository as follows:
 
