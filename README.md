@@ -20,7 +20,7 @@ Here, we show the learned distance matrix on the left and the scaling of the tra
 </p>
 
 The algorithm is characterized as follows:
- - *Input*: a set of elements with features, `shape=(N_batch, N_elem, N_feat)`, possibly in minibatches for efficient training (e.g. each graph is a different minibatch)
+ - *Input*: a set of elements with features, `shape=(N_batch, N_elem, N_feat)`, possibly in minibatches for efficient training (e.g. a minibatch may consist of several sets/graphs padded to the same size)
  - *Output*: a sparse adjacency matrix `shape=(N_batch, N_elem, N_elem)`, the elements of which can be differentiated with respect to the input
  - *Parameters*: bin size M, number of neighbors K, LSH codebook size (maximum number of bins) L
 
