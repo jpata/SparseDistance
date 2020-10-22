@@ -7,9 +7,10 @@ Efficiently generate sparse graph adjacency matrices using tensorflow, including
  - Output: a sparse adjacency matrix with shape `(N_batch, N_elem, N_elem)`, the elements of which can be differentiated with respect to the input
  - Parameters: bin size M, number of neighbors K
 
-1. Each element in the input set is assigned into a bin using locality-sensitive hashing
-2. In each bin, we run a dense k-nearest neighbors algorithm
-3. The neighbors found in each bin are propagated to the final sparse adjacency matrix
+- [x] Work on a modest GPU (e.g. 2060S) or a CPU
+- [x] Uses only native TF 2.x operations
+- [x] Better than quadratic scaling
+- [x] Fast evaluation and efficient memory use, up to 100k+ elements
 
 
 ```python
@@ -39,12 +40,20 @@ with tf.GradientTape(persistent=True) as g:
 grad = g.gradient(ret, dense_transform.weights)
 ```
 
+On the following images, you see the input set on the left and the learned graph structure (edges) on the right.
 <p float="left">
   <img src="images/graph_noedge.png" alt="Input set without edges" width="300"/>
   <img src="images/graph.png" alt="Genetated graph with edges" width="300"/>
 </p>
 
+Here, we show the learned distance matrix on a toy clustering problem on the left and the scaling of the training time on the right.
 <p float="left">
-  <img src="images/test.png" alt="Generated adjacency matrix" width="300"/>
+  <img src="images/dm.png" alt="Generated adjacency matrix" width="300"/>
   <img src="images/timing.png" alt="Scaling of the complexity with input size" width="300"/>
 </p>
+
+
+Based on the Reformer [1] and GravNet [2] papers.
+
+[1] https://arxiv.org/abs/2001.04451
+[2] https://arxiv.org/abs/1902.07987

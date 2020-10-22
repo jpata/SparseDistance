@@ -80,7 +80,8 @@ def test_timing(bin_size=100, max_num_bins=1000):
     plt.plot(num_samples, times, marker="o")
     plt.xlabel("number of elements per graph [N]")
     plt.ylabel("scaling of the training time:\n[t(N) / t(1000)]")
-    plt.savefig("timing.png", dpi=500)
+    plt.title("Scaling of the training time with input size")
+    plt.savefig("images/timing.png", dpi=500)
 
 def generate_event(mean_num_particles_per_event=1000, max_particle_energy=10.0, deposit_fraction=0.1, lowest_energy_threshold=0.5, deposit_pos_spread=0.02):
     particles = []
@@ -170,17 +171,20 @@ def test_graph_mode():
     plt.figure(figsize=(6, 5))
     plt.imshow(computed_dm, interpolation="none", cmap="binary")
     plt.colorbar()
-    plt.savefig("test.png", dpi=500)
+    plt.title("Learned adjacency matrix")
+    plt.savefig("images/dm.png", dpi=300)
 
     plt.figure(figsize=(5, 5))
     plt.scatter(X[0, :, 1], X[0, :, 2], marker="o", color="red", s=2.0)
-    plt.savefig("graph_noedge.png", dpi=500)
+    plt.title("Input set (no edges)")
+    plt.savefig("images/graph_noedge.png", dpi=300)
 
     plt.figure(figsize=(5, 5))
     rows, cols = np.where(computed_dm>0)
     edges = np.stack([rows, cols])
     plt.plot(X[0, edges, 1], X[0, edges, 2], linestyle="-", marker="o", color="black", markerfacecolor="red", markeredgecolor="red", markersize=2.0, lw=0.1, alpha=0.2)
-    plt.savefig("graph.png", dpi=500)
+    plt.title("Learned graph structure")
+    plt.savefig("images/graph.png", dpi=300)
 
     print("graph mode / keras training successful")
 
