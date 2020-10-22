@@ -29,6 +29,8 @@ The maximum input size is determined by the pre-generated LSH codebook size, whi
 The input features to the LSH hashing are learnable, so the binning can adapt to the problem based on gradient descent.
 
 ```python
+import tensorflow as tf
+import numpy as np
 from sparsedistance.models import SparseHashedNNDistance
 from sparsedistance.utils import sparse_dense_matmult_batch
 
