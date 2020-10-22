@@ -1,5 +1,6 @@
 from sparsedistance.models import SparseHashedNNDistance
-from sparsedistance.utils import sparse_dense_matmult_batch, pairwise_dist
+from sparsedistance.utils import sparse_dense_matmult_batch
+
 import numpy as np
 import tensorflow as tf
 import time
