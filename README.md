@@ -3,6 +3,19 @@ SparseDistance
 
 Efficiently generate sparse graph adjacency matrices using tensorflow, including gradient propagation and minibatches.
 
+On the following images, you see the input set on the left and the learned graph structure (edges) on the right for a toy clustering problem with approx. 5000 input elements per graph.
+<p float="left">
+  <img src="images/graph_noedge.png" alt="Input set without edges" width="300"/>
+  <img src="images/graph.png" alt="Genetated graph with edges" width="300"/>
+</p>
+
+Here, we show the learned distance matrix on the left and the scaling of the training time on the right.
+<p float="left">
+  <img src="images/dm.png" alt="Generated adjacency matrix" width="300"/>
+  <img src="images/timing.png" alt="Scaling of the complexity with input size" width="300"/>
+</p>
+
+The algorithm is characterized as follows:
  - *Input*: a set of elements with features, `shape=(N_batch, N_elem, N_feat)`, possibly in minibatches for efficient training (e.g. each graph is a different minibatch)
  - *Output*: a sparse adjacency matrix `shape=(N_batch, N_elem, N_elem)`, the elements of which can be differentiated with respect to the input
  - *Parameters*: bin size M, number of neighbors K, LSH codebook size (maximum number of bins) L
@@ -38,18 +51,6 @@ with tf.GradientTape(persistent=True) as g:
 grad = g.gradient(ret, dense_transform.weights)
 ```
 
-On the following images, you see the input set on the left and the learned graph structure (edges) on the right for a toy clustering problem.
-<p float="left">
-  <img src="images/graph_noedge.png" alt="Input set without edges" width="300"/>
-  <img src="images/graph.png" alt="Genetated graph with edges" width="300"/>
-</p>
-
-Here, we show the learned distance matrix on the left and the scaling of the training time on the right.
-<p float="left">
-  <img src="images/dm.png" alt="Generated adjacency matrix" width="300"/>
-  <img src="images/timing.png" alt="Scaling of the complexity with input size" width="300"/>
-</p>
-
 Features:
  - [x] Work on a modest GPU (e.g. 2060S) or a CPU
  - [x] Uses only native TF 2.x operations, no compilation needed
@@ -59,3 +60,8 @@ Based on the Reformer [1] and GravNet [2] papers.
 
  - [1] https://arxiv.org/abs/2001.04451
  - [2] https://arxiv.org/abs/1902.07987
+
+
+If you use this code academically, please cite this repository as follows:
+
+ - J.Pata, 2020, https://github.com/jpata/SparseDistance
