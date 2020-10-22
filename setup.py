@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="jpata",
+    name="sparsedistance",
     version="0.1",
     author="JOosep Pata",
     author_email="joosep.pata@cern.cj",
