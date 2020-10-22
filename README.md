@@ -5,7 +5,7 @@ SparseDistance
 [![DOI](https://zenodo.org/badge/306009785.svg)](https://zenodo.org/badge/latestdoi/306009785)
 
 
-Efficiently generate sparse graph adjacency matrices using tensorflow, including gradient propagation and minibatches.
+Efficiently generate sparse graph adjacency matrices using tensorflow, including gradient propagation and minibatches, for graph sizes up to 100k+ in subquadratic time.
 
 On the following images, you see the input set on the left and the learned graph structure (edges) on the right for a toy clustering problem with approx. 5000 input elements per graph.
 <p float="left">
