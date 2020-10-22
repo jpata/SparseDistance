@@ -61,6 +61,8 @@ Features:
  - [x] Works on a modest GPU (e.g. 2060S) or a CPU
  - [x] Uses only native TF 2.x operations, no compilation needed
  - [x] Fast evaluation and efficient memory use
+ - [x] TF graph mode for easy deployment
+ - [x] TF eager mode for debugging
 
 Based on the Reformer [1] and GravNet [2] papers.
 
